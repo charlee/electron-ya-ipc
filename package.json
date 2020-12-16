@@ -1,0 +1,23 @@
+{
+  "name": "electron-ya-ipc",
+  "version": "0.1.0",
+  "description": "Yet another IPC helper for Electron.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/charlee/electron-ya-ipc.git"
+  },
+  "keywords": [
+    "electron",
+    "ipc"
+  ],
+  "author": "Charlee Li",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/charlee/electron-ya-ipc/issues"
+  },
+  "homepage": "https://github.com/charlee/electron-ya-ipc#readme"
+}
