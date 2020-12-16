@@ -21,22 +21,22 @@ Usually, you have to write the following code with native IPC:
 
 ```
 // in main process with native IPC
-ipcMain.on('get_media_info', (event, ...args) => {
+ipcMain.on('get_book_info', (event, ...args) => {
   const filepath = args[0];
-  getMediaInfo(filepath).then(info =>{
-    event.reply('get_media_info.reply', info);
+  getBookInfo(filepath).then(info =>{
+    event.reply('get_book_info.reply', info);
   });
 });
 
 // in renderer process with native IPC
-export const getMediaInfo = (filepath: string) => {
+export const getBookInfo = (book_id) => {
   return new Promise((resolve, reject) => {
 
-    ipcRenderer.once('get_media_info.reply', (event, info) => {
+    ipcRenderer.once('get_book_info.reply', (event, info) => {
       resolve(info);
     });
 
-    ipcRenderer.send('get_media_info', filepath);
+    ipcRenderer.send('get_book_info', book_id);
   })
 }
 ```
@@ -46,7 +46,7 @@ However with `electron-ya-ipc`, you can simply do:
 ```
 // in main process with `electron-ya-ipc`
 const { ipcMain } = require('electron-ya-ipc');
-ipcMain.on('my_channel', async (book_id) => {
+ipcMain.on('get_book_info', async (book_id) => {
   // the handler must be an async function, or return a promise
   const bookInfo = await getBookInfo(book_id);
   return bookInfo;
@@ -55,5 +55,5 @@ ipcMain.on('my_channel', async (book_id) => {
 
 // in renderer process with `electron-ya-ipc`
 const { ipcRenderer } = require('electron-ya-ipc');
-ipcRenderer.send('my_channel', book_id);
+ipcRenderer.send('get_book_info', book_id);
 ```
